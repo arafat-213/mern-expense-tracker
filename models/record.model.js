@@ -19,7 +19,8 @@ const recordSchema = new mongoose.Schema(
 		},
 		date: {
 			type: Date,
-			default: Date.now()
+			default: Date.now(),
+			max: Date.now()
 		},
 		payee: {
 			type: String,

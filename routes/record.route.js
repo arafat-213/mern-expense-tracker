@@ -7,13 +7,14 @@ const {
 	update
 } = require('../controllers/record.controller')
 const auth = require('../middleware/auth.middleware')
+const { recordValidator } = require('../helpers/validationHelper')
 
 /**
  * @route POST api/records
  * @desc Create a record
  * @access Private
  */
-router.post('/records', auth, create)
+router.post('/records', [recordValidator, auth], create)
 
 /**
  * @route GET api/records
@@ -41,5 +42,5 @@ router.delete('/records/:id', auth, remove)
  * @desc Update a single record
  * @access Private
  */
-router.put('/records/:id', auth, update)
+router.put('/records/:id', [recordValidator, auth], update)
 module.exports = router
