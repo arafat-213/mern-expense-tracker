@@ -10,7 +10,7 @@ const recordSchema = new mongoose.Schema(
 		},
 		amount: {
 			type: Number,
-			default: 0
+			required: true
 		},
 		description: {
 			type: String,
@@ -35,4 +35,4 @@ const recordSchema = new mongoose.Schema(
 	{ timestamps: true }
 )
 
-module.exports = Record = mongoose.Model('record', recordSchema)
+module.exports = Record = mongoose.model('record', recordSchema)

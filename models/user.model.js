@@ -22,10 +22,6 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			minlength: 6,
 			trim: true
-		},
-		token: {
-			type: String,
-			required: true
 		}
 	},
 	{
@@ -58,9 +54,13 @@ userSchema.pre('save', async function () {
 userSchema.methods.generateAuthToken = async function () {
 	const user = this
 	const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
-	user.token = token
-	await user.save()
 	return token
 }
 
+// remove password before returning user document
+userSchema.method.toJSON = function () {
+	var user = this.toObject()
+	delete user.password
+	return user
+}
 module.exports = User = mongoose.model('user', userSchema)

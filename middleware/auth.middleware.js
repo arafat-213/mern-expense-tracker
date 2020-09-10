@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
 
 		if (!token) {
 			return res.status(401).json({
-				errors: [{ message: 'Authentication failed' }]
+				error: 'Authentication failed'
 			})
 		}
 
@@ -16,12 +16,14 @@ const auth = async (req, res, next) => {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
 		// Valid token
-		req.user = decoded.user
+		req.user = decoded._id
 
 		next()
 	} catch (error) {
 		res.status(401).json({
-			errors: [{ message: 'Authentication failed' }]
+			error: 'Authentication failed'
 		})
 	}
 }
+
+module.exports = auth
