@@ -3,6 +3,8 @@ import setAuthToken from '../utils/setAuthToken'
 import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+	SIGNUP_SUCCESS,
+	SIGNUP_FAIL,
 	USER_LOADED,
 	AUTH_ERROR,
 	LOGOUT
@@ -38,7 +40,25 @@ export const login = (email, password) => async dispatch => {
 	}
 }
 
-export const signup = (name, email, password) => dispatch => {}
+export const signup = (name, email, password) => async dispatch => {
+	try {
+		const res = await axios.post('/api/user/register', {
+			name,
+			email,
+			password
+		})
+		setAuthToken(res.data.token)
+		dispatch({
+			type: SIGNUP_SUCCESS,
+			payload: res.data
+		})
+		// dispatch(loadUser())
+	} catch (error) {
+		dispatch({
+			type: SIGNUP_FAIL
+		})
+	}
+}
 
 export const logout = () => async dispatch => {
 	dispatch({

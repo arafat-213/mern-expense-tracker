@@ -3,6 +3,7 @@ import './App.css'
 import setAuthToken from './utils/setAuthToken'
 import Login from './components/auth/Login'
 import RecordList from './components/records/RecordList'
+import Signup from './components/auth/Signup'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/routing/PrivateRoute'
 //redux
@@ -21,7 +22,9 @@ const App = () => {
 				<Route extact path='/login'>
 					<Login />
 				</Route>
-				<Route exact path='/register'></Route>
+				<Route exact path='/register'>
+					<Signup />
+				</Route>
 				<Route exact path='/dashboard'>
 					<PrivateRoute component={RecordList} />
 				</Route>
