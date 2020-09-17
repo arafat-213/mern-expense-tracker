@@ -1,18 +1,36 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import axios from 'axios'
 import setAuthToken from './utils/setAuthToken'
+import Login from './components/auth/Login'
+import RecordList from './components/records/RecordList'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PrivateRoute from './components/routing/PrivateRoute'
+//redux
+import { Provider } from 'react-redux'
+import store from './store'
+import { loadUser } from './actions/auth.action'
 
+if (localStorage.token) setAuthToken(localStorage.token)
 const App = () => {
-	const loadData = async () => {
-		const res = await axios.get('/api/records')
-		console.log(res.data)
-	}
 	useEffect(() => {
-		setAuthToken('INSERT_A_TOKEN_HERE')
-		loadData()
+		store.dispatch(loadUser())
 	}, [])
-	return <button onClick={loadData}>Hello World</button>
+	return (
+		<Provider store={store}>
+			<Router>
+				<Route extact path='/login'>
+					<Login />
+				</Route>
+				<Route exact path='/register'></Route>
+				<Route exact path='/dashboard'>
+					<PrivateRoute component={RecordList} />
+				</Route>
+				<Route path='/'>
+					<Login />
+				</Route>
+			</Router>
+		</Provider>
+	)
 }
 
 export default App

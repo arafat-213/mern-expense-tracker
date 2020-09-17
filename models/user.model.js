@@ -58,9 +58,11 @@ userSchema.methods.generateAuthToken = async function () {
 }
 
 // remove password before returning user document
-userSchema.method.toJSON = function () {
+userSchema.methods.toJSON = function () {
 	var user = this.toObject()
 	delete user.password
+	//TODO: Why this token is being stored and sent?
+	delete user.token
 	return user
 }
 module.exports = User = mongoose.model('user', userSchema)
