@@ -6,7 +6,7 @@ export const getRecords = () => async dispatch => {
 		const res = await axios.get('/api/records')
 		dispatch({
 			type: GET_RECORDS,
-			payload: res.data.records
+			payload: res.data
 		})
 	} catch (error) {
 		console.log(error)

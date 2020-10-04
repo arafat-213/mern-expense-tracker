@@ -12,7 +12,8 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				isLoading: false,
-				list: payload
+				list: payload.records,
+				cashFlow: payload.cashFlow
 			}
 		default:
 			return state
