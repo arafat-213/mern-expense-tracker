@@ -19,7 +19,6 @@ const RecordList = ({ getRecords, records, isLoading }) => {
 				records.map(record => (
 					<RecordItem key={record._id} record={record} />
 				))}
-			<Link to='/create'> Create a record </Link>
 		</ListGroup>
 	)
 }
