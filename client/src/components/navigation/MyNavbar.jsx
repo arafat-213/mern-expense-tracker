@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 const MyNavbar = ({ isAuthenticated }) => {
 	return (
-		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+		<Navbar collapseOnSelect expand='md' bg='dark' variant='dark'>
 			<Navbar.Brand href='#home'>Expense-Tracker</Navbar.Brand>
 			<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 			<Navbar.Collapse id='responsive-navbar-nav'>
@@ -13,6 +13,9 @@ const MyNavbar = ({ isAuthenticated }) => {
 						<Nav className='mr-auto'>
 							<NavLink to='/dashboard' className='nav-link'>
 								Dashboard
+							</NavLink>
+							<NavLink to='/charts' className='nav-link'>
+								Charts
 							</NavLink>
 							<NavLink to='/create' className='nav-link'>
 								Create

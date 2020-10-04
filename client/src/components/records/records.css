@@ -5,10 +5,7 @@
 .record-list {
 	max-width: 450px;
 }
-.list-group:first-child {
-	margin-top: 0.15rem;
-}
 
-.list-group:last-child {
+.record-list-item:last-child {
 	margin-bottom: 0rem;
 }

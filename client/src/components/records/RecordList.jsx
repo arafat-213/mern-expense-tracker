@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import RecordItem from './RecordItem'
 import ListGroup from 'react-bootstrap/esm/ListGroup'
-import { Link } from 'react-router-dom'
 // Redux
 import { connect } from 'react-redux'
 import { getRecords } from '../../actions/records.action'

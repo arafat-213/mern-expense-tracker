@@ -5,6 +5,7 @@ import Login from './components/auth/Login'
 import RecordList from './components/records/RecordList'
 import CreateRecord from './components/records/CreateRecord'
 import Signup from './components/auth/Signup'
+import IncomeExpensePie from './components/charts/IncomeExpensePie'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/routing/PrivateRoute'
 import MyNavbar from './components/navigation/MyNavbar'
@@ -35,6 +36,9 @@ const App = () => {
 				</Route>
 				<Route exact path='/create'>
 					<PrivateRoute component={CreateRecord} />
+				</Route>
+				<Route exact path='/charts'>
+					<PrivateRoute component={IncomeExpensePie} />
 				</Route>
 				<Route exact path='/logout'>
 					<PrivateRoute component={Logout} />
