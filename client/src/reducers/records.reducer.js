@@ -1,8 +1,9 @@
-import { GET_RECORDS } from '../actions/types'
+import { CREATE_RECORD, GET_RECORDS } from '../actions/types'
 
 const initialState = {
 	isLoading: true,
-	list: []
+	list: [],
+	currentRecord: {}
 }
 
 export default function (state = initialState, action) {
@@ -14,6 +15,12 @@ export default function (state = initialState, action) {
 				isLoading: false,
 				list: payload.records,
 				cashFlow: payload.cashFlow
+			}
+		case CREATE_RECORD:
+			return {
+				...state,
+				isLoading: false,
+				currentRecord: payload
 			}
 		default:
 			return state
