@@ -30,10 +30,10 @@ const recordSchema = new mongoose.Schema(
 		owner: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
-			ref: 'user'
+			ref: 'User'
 		}
 	},
 	{ timestamps: true }
 )
 
-module.exports = Record = mongoose.model('record', recordSchema)
+module.exports = Record = mongoose.model('Record', recordSchema)

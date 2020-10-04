@@ -65,4 +65,4 @@ userSchema.methods.toJSON = function () {
 	delete user.token
 	return user
 }
-module.exports = User = mongoose.model('user', userSchema)
+module.exports = User = mongoose.model('User', userSchema)

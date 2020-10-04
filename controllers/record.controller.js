@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator')
 const Record = require('../models/record.model')
+const User = require('../models/user.model')
 
 module.exports = {
 	create: async (req, res) => {
@@ -18,7 +19,20 @@ module.exports = {
 	list: async (req, res) => {
 		try {
 			const records = await Record.find({ owner: req.user })
-			return res.status(200).json({ records })
+			let income = 0,
+				expenses = 0
+			records.forEach(record => {
+				if (record.recordType === 'income') income += record.amount
+				else if (record.recordType === 'expense')
+					expenses += record.amount
+			})
+			return res.status(200).json({
+				records,
+				cashFlow: {
+					income,
+					expenses
+				}
+			})
 		} catch (error) {
 			return res.status(400).json({ erorr: error.message })
 		}
@@ -88,6 +102,24 @@ module.exports = {
 		} catch (error) {
 			console.log(error)
 			return res.status(400).json({ error: error.message })
+		}
+	},
+	cashFlow: async (req, res) => {
+		try {
+			const query = {}
+			const records = await Record.find({ owner: req.user })
+			let income = 0,
+				expenses = 0
+			records.forEach(record => {
+				if (record.recordType === 'income') income += record.amount
+				else if (record.recordType === 'expense')
+					expenses += record.amount
+			})
+		} catch (error) {
+			console.log(error)
+			return res.status(400).json({
+				error: error.message
+			})
 		}
 	}
 }
