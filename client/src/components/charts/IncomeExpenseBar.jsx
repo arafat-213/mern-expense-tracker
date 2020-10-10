@@ -4,7 +4,7 @@ import { HorizontalBar } from 'react-chartjs-2'
 // Redux
 import { connect } from 'react-redux'
 
-const IncomeExpenseBar = ({ cashFlow: { income, expenses } }) => {
+const IncomeExpenseBar = ({ cashFlow: { income, expenses }, isLoading }) => {
 	const [data, setData] = useState({
 		labels: ['Expense', 'Income'],
 		datasets: [
@@ -20,30 +20,30 @@ const IncomeExpenseBar = ({ cashFlow: { income, expenses } }) => {
 			}
 		]
 	})
+	// console.log('Loading chart ', isLoading)
 	return (
-		<div>
-			<HorizontalBar
-				data={data}
-				type='horizontalBar'
-				options={{
-					title: {
-						display: true,
-						text: 'Income vs Expenses',
-						fontSize: 20
-					},
-					legend: {
-						display: true,
-						position: 'right'
-					}
-				}}
-			/>
-		</div>
+		<HorizontalBar
+			data={data}
+			type='horizontalBar'
+			options={{
+				title: {
+					display: true,
+					text: 'Income vs Expenses',
+					fontSize: 20
+				},
+				legend: {
+					display: true,
+					position: 'right'
+				}
+			}}
+		/>
 	)
 }
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		cashFlow: state.records.cashFlow
+		cashFlow: state.records.cashFlow,
+		isLoading: state.records.isLoading
 	}
 }
 export default connect(mapStateToProps)(IncomeExpenseBar)

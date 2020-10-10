@@ -7,26 +7,20 @@ import { getRecords } from '../../actions/records.action'
 // CSS
 import './records.css'
 
-const RecordList = ({ getRecords, records, isLoading }) => {
-	useEffect(() => {
-		getRecords()
-	}, [])
-	console.log('records', records)
+const RecordList = ({ records }) => {
 	return (
 		<ListGroup className='record-list mx-auto'>
-			{!isLoading &&
-				records.map(record => (
-					<RecordItem key={record._id} record={record} />
-				))}
+			{records.map(record => (
+				<RecordItem key={record._id} record={record} />
+			))}
 		</ListGroup>
 	)
 }
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		records: state.records.list,
-		isLoading: state.records.isLoading
+		records: state.records.list
 	}
 }
 
-export default connect(mapStateToProps, { getRecords })(RecordList)
+export default connect(mapStateToProps)(RecordList)
