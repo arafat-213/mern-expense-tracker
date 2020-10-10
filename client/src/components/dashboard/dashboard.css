@@ -1,0 +1,8 @@
+.dashboard-card {
+	max-height: 450px;
+	width: 100%;
+}
+
+.record-list {
+	overflow-y: scroll;
+}
